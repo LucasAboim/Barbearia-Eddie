@@ -31860,3 +31860,44 @@ footer [class*=col-] .widget+.widget {
   initial-value: "";
   inherits: false;
 }
+/* FORÇAR NAVBAR PRETA NO SCROLL – FORTES.T THEME */
+.navbar.fixed,
+.navbar.stuck,
+.navbar-clone,
+.navbar:not(.transparent) {
+  background-color: #000 !important;
+  border-bottom: 1px solid #d4af37 !important; /* dourado */
+}
+/* Esconder no topo */
+.menu-scroll-down {
+  display: none;
+}
+
+/* Mostrar quando a navbar entra no modo scroll */
+.navbar.fixed .menu-scroll-down,
+.navbar.stuck .menu-scroll-down,
+.navbar-clone .menu-scroll-down,
+.navbar:not(.transparent) .menu-scroll-down {
+  display: flex !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+.navbar .nav-link {
+  color: white !important;
+}
+
+.navbar .nav-link:hover {
+  color: #d4af37 !important;
+}
+
+/* Hamburger dourado com scroll */
+.navbar.navbar-scrolled .hamburger span,
+.navbar.navbar-scrolled .hamburger span:before,
+.navbar.navbar-scrolled .hamburger span:after {
+  background-color: #d4af37 !important;
+}
+
+.offcanvas-nav-btn{
+  color: #d4af37 !important;
+}

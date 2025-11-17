@@ -1,101 +1,78 @@
-<script setup>
-import { useRouter } from 'vue-router'
-const router = useRouter()
-
-function closeMenuAndNavigate(path) {
-  // fecha o offcanvas via bootstrap
-  const offcanvasEl = document.querySelector(".offcanvas.show");
-  if (offcanvasEl && window.bootstrap) {
-    const instance = window.bootstrap.Offcanvas.getInstance(offcanvasEl);
-    if (instance) instance.hide();
-  }
-
-  // remove backdrop se existir
-  document.querySelectorAll(".offcanvas-backdrop").forEach(el => el.remove());
-  document.body.classList.remove("offcanvas-active");
-
-  // navegar
-  router.push(path)
-}
-</script>
 <template>
-  <div>
-    <header class="relative !bg-[#edf2fc]">
-      <nav class="navbar navbar-expand-lg classic transparent position-absolute navbar-dark caret-none">
-        <div class="container xl:!flex-row lg:!flex-row !flex-nowrap items-center">
+  <header class="relative !bg-[#edf2fc]">
+    <nav class="navbar navbar-expand-lg classic transparent position-absolute navbar-dark caret-none">
+      <div class="container xl:!flex-row lg:!flex-row !flex-nowrap items-center">
 
-          <!-- LOGO -->
-          <div class="navbar-brand w-full">
-            <NuxtLink to="/">
-              <img class="logo-dark !w-[6rem]" src="/assets/img/nomenua.png" alt="logo">
-              <img class="logo-light !w-[6rem]" src="/assets/img/nomenua.png" alt="logo">
-            </NuxtLink>
+        <!-- LOGO (não ocupa toda a largura para não empurrar o resto) -->
+        <div class="navbar-brand w-auto flex items-center">
+          <NuxtLink to="/" class="flex items-center">
+            <img class="logo-dark !w-[4rem]" src="/assets/img/logo.png" alt="logo">
+            <img class="logo-light !w-[4rem]" src="/assets/img/logo.png" alt="logo">
+          </NuxtLink>
+        </div>
+
+        <!-- MENU (offcanvas) -->
+        <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+
+          <!-- MOBILE HEADER -->
+          <div class="offcanvas-header xl:!hidden lg:!hidden flex items-center justify-between flex-row p-6">
+            <h3 class="!text-white">MENU</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
           </div>
 
-          <!-- MENU -->
-          <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+          <!-- LINKS -->
+          <div class="offcanvas-body xl:!ml-auto lg:!ml-auto flex flex-col !h-full">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+              <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+              <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#trabalhos">Trabalhos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#horarios">Horários</a></li>
+            </ul>
 
-            <!-- MOBILE HEADER -->
-            <div class="offcanvas-header xl:!hidden lg:!hidden flex items-center justify-between flex-row p-6">
-              <h3 class="!text-white">nüa.</h3>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-            </div>
-
-            <!-- LINKS -->
-            <div class="offcanvas-body xl:!ml-auto lg:!ml-auto flex flex-col !h-full">
-              <ul class="navbar-nav">
-
-                <li class="nav-item">
-                  <a
-                      class="nav-link"
-                      @click="closeMenuAndNavigate('/')"
-                  >
-                    Início
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a
-                      class="nav-link"
-                      @click="closeMenuAndNavigate('/servicos')"
-                  >
-                    Serviços
-                  </a>
-                </li>
-
-              </ul>
-
-
-
-              <!-- FOOTER MOBILE -->
-              <div class="offcanvas-footer xl:!hidden lg:!hidden">
-                <div>
-                  <br>
-                  <a href="mailto:nuafamalicao@gmail.com" class="link-inverse">nuafamalicao@gmail.com</a><br>
-                  <a href="tel:+351914748497">914 748 497</a><br>
-
-                </div>
+            <div class="offcanvas-footer xl:!hidden lg:!hidden">
+              <div>
+                <br>
+                <a href="tel:+351928156107">928 156 107</a><br>
               </div>
             </div>
           </div>
-
-          <!-- MOBILE TOGGLE -->
-          <div class="navbar-other w-full !flex justify-end mr-[20px]">
-            <ul class="navbar-nav !flex-row !items-center">
-              <li class="nav-item xl:!hidden lg:!hidden">
-                <button class="hamburger offcanvas-nav-btn"><span>
-                </span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
         </div>
-      </nav>
-    </header>
+
+        <!-- RIGHT SIDE ICONS + BRAND TEXT (texto à direita no desktop) -->
+        <div class="navbar-other w-full !flex justify-end items-center mr-[20px]">
+          <ul class="navbar-nav !flex-row !items-center">
+
+            <!-- TEXTO À DIREITA - só aparece quando navbar-expand-lg está ativado -->
+            <li class="nav-item d-none d-lg-flex items-center mr-4">
+    <span class="text-[#d4af37] text-xl font-semibold tracking-wide">
+      BARBEARIA O LORDE
+    </span>
+            </li>
+
+            <!-- INSTAGRAM ICON -->
+            <li class="nav-item flex items-center mr-3">
+              <a href="https://instagram.com/teu_instagram" target="_blank">
+                <i class="uil uil-instagram text-[#d4af37] text-3xl instagram-icon"></i>
+              </a>
+            </li>
+
+            <!-- HAMBURGER (APENAS MOBILE) -->
+            <li class="nav-item xl:!hidden lg:!hidden">
+              <button class="hamburger color:white offcanvas-nav-btn">
+                <span></span>
+              </button>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
 
 
-    <!-- Conteúdo da página -->
+<!-- Conteúdo da página -->
     <main>
       <slot />
     </main>
@@ -195,8 +172,6 @@ function closeMenuAndNavigate(path) {
         </div>
       </footer>
     </footer>
-    <!-- /Footer -->
-  </div>
 </template>
 <script setup lang="ts">
 </script>
